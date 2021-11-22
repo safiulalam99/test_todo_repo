@@ -1,7 +1,7 @@
 variables:
   REMOTE_HOST: deploy@21wsp5
-  API_IMAGE: ${CI_REGISTRY_IMAGE}/api
-  WEBAPP_IMAGE: ${CI_REGISTRY_IMAGE}/webapp
+  API_IMAGE: ${CI_REGISTRY_IMAGE}/backend
+  WEBAPP_IMAGE: ${CI_REGISTRY_IMAGE}/frontend
 
 stages:
   - test
@@ -12,7 +12,7 @@ test:
   image: node:latest
   stage: test
   script:    # Go to api directory
-    - cd api
+    - cd backend
     # Run npm commands
     - npm install
     - npm test
@@ -20,7 +20,7 @@ test:
     #- npm test
     #- npm audit
     # Go to webapp directory
-    - cd ../webapp
+    - cd ../frontend
     # Remove package-lock.json because of a bug
     # (https://stackoverflow.com/questions/63321707/react-npm-install-fails)
     - rm package-lock.json

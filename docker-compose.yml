@@ -1,20 +1,20 @@
 version: '2.3'
 services:
-  webapp:
+  frontend:
     build:
-      context: ./webapp
+      context: ./frontend
     ports:
       - '3000:3000'
     volumes:
-      - ./webapp:/opt/app
+      - ./frontend:/opt/app
     environment:
       CI: 'true'
     restart: always
-  api:
+  backend:
     build:
-      context: ./api
+      context: ./backend
     ports:
-      - '5000:5000'
+      - '8050:8000'
     volumes:
-      - ./api:/opt/app
+      - ./backend:/opt/app
     restart: always
