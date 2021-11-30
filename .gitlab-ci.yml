@@ -39,8 +39,8 @@ build:
     - docker system prune
     - docker login -u gitlab-ci-token -p "${CI_JOB_TOKEN}" "${CI_REGISTRY}"
     # Build & push backend
-    - docker build -f backend/DockerfileServer -t "${BACKEND_IMAGE}" .
-    - docker push "${backend_IMAGE}"
+    #- docker build -f backend/DockerfileServer -t "${BACKEND_IMAGE}" .
+    #- docker push "${backend_IMAGE}"
     # Build & push frontend
     - docker build -f frontend/DockerfileServer -t "${FRONTEND_IMAGE}" .
     - docker push "${FRONTEND_IMAGE}"
@@ -56,7 +56,7 @@ deploy:
     # Prepare files for transfer
     - mkdir remote_dir_pw
     - cp docker-compose.server.yml remote_dir_pw/docker-compose.yml
-    - echo "BACKEND_IMAGE=${BACKEND_IMAGE}" >> remote_dir_pw/.env
+    #- echo "BACKEND_IMAGE=${BACKEND_IMAGE}" >> remote_dir_pw/.env
     - echo "FRONTEND_IMAGE=${FRONTEND_IMAGE}" >> remote_dir_pw/.env
     # Transfer to server
     - rsync -r remote_dir_pw "${REMOTE_HOST}:./"
