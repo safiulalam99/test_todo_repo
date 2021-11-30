@@ -39,8 +39,8 @@ build:
     - docker system prune
     - docker login -u gitlab-ci-token -p "${CI_JOB_TOKEN}" "${CI_REGISTRY}"
     # Build & push backend
-    #- docker build -f backend/DockerfileServer -t "${BACKEND_IMAGE}" .
-    #- docker push "${backend_IMAGE}"
+    - docker build -f backend/DockerfileServer -t "${BACKEND_IMAGE}" .
+    - docker push "${backend_IMAGE}"
     # Build & push frontend
     - docker build -f frontend/DockerfileServer -t "${FRONTEND_IMAGE}" .
     - docker push "${FRONTEND_IMAGE}"
