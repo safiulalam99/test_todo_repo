@@ -16,7 +16,7 @@ test:
     # Run npm commands
     - npm install
     - npm test
-    - npm audit
+    #- npm audit
     #- npm test
     #- npm audit
     # Go to frontend directory
@@ -27,7 +27,7 @@ test:
     # Run npm commands
     - npm install
     - npm test
-    - npm audit
+    # - npm audit
 
 
 build:
