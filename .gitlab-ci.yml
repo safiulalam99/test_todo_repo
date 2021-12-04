@@ -64,10 +64,12 @@ deploy:
     - ssh ${REMOTE_HOST} /bin/bash 
             "
             echo 'Starting..';
+            df
             cd ~/remote_dir_pw;
             docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY;
             
-
+            docker info
+            df -h
 
             docker-compose pull;
             docker-compose up -d;
