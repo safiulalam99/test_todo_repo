@@ -67,11 +67,14 @@ deploy:
             cd ~/remote_dir_pw;
             docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY;
             
-            docker system df
-            docker system prune -a
-            sudo docker image prune -f
-            sudo docker container prune -f
-            docker rmi -f $(docker image ls -a -q)
+            sudo service docker stop;
+            sudo docker image prune -f;
+            sudo docker container prune -f;
+            docker rmi -f $(docker image ls -a -q);
+            rm -rvf /var/lib/docker;
+            docker daemon --storage-opt dm.basesize=20G;
+            sudo service docker start;
+            docker info;
 
             docker-compose pull;
             docker-compose up -d;
