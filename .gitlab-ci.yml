@@ -70,6 +70,11 @@ deploy:
             
             docker info;
             ls
+            docker image -a;
+            docker stop $(docker container ls -q);
+            docker image prune -a;
+            docker ps -a -q | xargs docker rm
+            docker images -a -q | xargs docker rmi -f
 
             docker-compose pull;
             docker-compose up -d;
