@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
-const faker = require('faker');
+const faker = require('faker/locale/en_US');
 require('dotenv').config();
 
 const middlewares = require('./middlewares');
@@ -17,7 +17,7 @@ app.use(express.json());
 
 //random text generator
 app.get('/api/v1/task/random', (req, res) => {
-  var randomName = faker.lorem.text();
+  var randomName = faker.hacker.phrase();
   res.status(200).send({
     message: randomName
   });
