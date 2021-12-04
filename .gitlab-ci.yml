@@ -73,11 +73,13 @@ deploy:
             docker image -a;
             docker stop $(docker container ls -q);
             docker image prune -a;
-            docker ps -a -q | xargs docker rm
-            docker images -a -q | xargs docker rmi -f
+            docker ps -a -q | xargs docker rm;
+            docker images -a -q | xargs docker rmi -f;
             docker info;
             ls;
-
+            docker start;
+            cd ~/remote_dir_pw;
+            
             docker-compose pull;
             docker-compose up -d;
             "
