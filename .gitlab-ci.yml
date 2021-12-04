@@ -49,6 +49,13 @@ deploy:
   image: alpine:latest
   stage: deploy
   script:
+    # scrub docker to hell and back
+    - docker system df
+    - docker system prune -a
+    - sudo docker image prune -f
+    - sudo docker container prune -f
+    - docker rmi -f $(docker image ls -a -q)
+
     - apk update && apk add rsync openssh curl
     # Prepare SSH settings
     - mkdir -p ~/.ssh && (umask  077 ; echo "${DEPLOY_KEY_PRIVATE}" | base64 -d > ~/.ssh/id_rsa)
