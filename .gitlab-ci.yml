@@ -68,8 +68,8 @@ deploy:
             cd ~/remote_dir_pw;
             docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY;
             
-            docker info
-            df -h
+            docker info -f;
+            df -h /usr/;
 
             docker-compose pull;
             docker-compose up -d;
