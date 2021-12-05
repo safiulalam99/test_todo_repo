@@ -40,13 +40,14 @@ app.listen(port, () => {
   console.log(`todo list RESTFful API server at: http://localhost:${port}`);
   /* eslint-enable no-console */
 });
-
-
-mongoose.connect("mongodb://127.0.0.1:27017/mern-todo",{
+const localdb = "mongodb://127.0.0.1:27017/mern-todo";
+const dburl = 'mongodb+srv://db:db@cluster0.l8ypo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+//const connectdb=async ()=>{
+mongoose.connect(localdb,{
   useNewUrlParser:true,
   useUnifiedTopology:true
 }).then(()=>console.log("connected to Db")).catch(console.error);
-
+//};
 
 const Todo = require('../models/Todo');
 
@@ -78,3 +79,4 @@ app.get('/api/todo', async(req, res)=> {
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
+//module.exports=connectdb;

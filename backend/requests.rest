@@ -5,7 +5,7 @@ POST http://localhost:8000/api/todo/new
 Content-Type: application/json
 
 {
-    "text":"order pi"
+    "text":"vddfsdfdffsdf"
 }
 
 ###
