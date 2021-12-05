@@ -1,19 +1,17 @@
 const express = require('express');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
 const helmet = require('helmet');
 const cors = require('cors');
 const faker = require('faker/locale/en_US');
 require('dotenv').config();
-
 const middlewares = require('./middlewares');
 const api = require('./api');
 
 const app = express();
 
-app.use(morgan('dev'));
-app.use(helmet());
-app.use(cors());
-app.use(express.json());
+app.use(cors()); //for stopping cors errors
+app.use(express.json()); //allow to use contetn type application json
 
 //random text generator
 app.get('/api/v1/task/random', (req, res) => {
@@ -30,12 +28,53 @@ app.get('/api/get', (req, res) => {
     "message": '🦄🌈🦄'
   });
 });
-app.post('/api/post/:id', (req,res)=>{
 
-});
+
 app.use('/api/v1', api);
+
+
+module.exports = app;
+const port = process.env.PORT || 8000;
+app.listen(port, () => {
+  /* eslint-disable no-console */
+  console.log(`todo list RESTFful API server at: http://localhost:${port}`);
+  /* eslint-enable no-console */
+});
+
+
+mongoose.connect("mongodb://127.0.0.1:27017/mern-todo",{
+  useNewUrlParser:true,
+  useUnifiedTopology:true
+}).then(()=>console.log("connected to Db")).catch(console.error);
+
+
+const Todo = require('../models/Todo');
+
+//posting
+app.post('/api/todo/new',(req,res)=>{
+  const todo=new Todo({
+    text: req.body.text
+  });
+  todo.save();
+  res.json(todo);
+})
+//getting
+app.get('/api/todo', async(req, res)=> {
+  const todos =await Todo.find();
+  res.json(todos);
+  });
+//delete function
+  app.delete('/api/todo/delete/:id', async(req,res)=>{
+    const result = await Todo.findByIdAndDelete(req.params.id);
+    res.json(result);
+  })
+  //checking out tasks
+  app.put('/api/todo/comp/:id', async(req,res)=>{
+    const todo = await Todo.findById(req.params.id);
+    todo.complete = !todo.complete;
+    todo.save();
+    res.json(todo);
+  })
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
-
-module.exports = app;

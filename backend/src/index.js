@@ -1,5 +1,5 @@
 const app = require('./app');
-
+const Todo = require('../Todo');
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
   /* eslint-disable no-console */
