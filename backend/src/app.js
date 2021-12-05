@@ -43,7 +43,7 @@ app.listen(port, () => {
 const localdb = "mongodb://127.0.0.1:27017/mern-todo";
 const dburl = 'mongodb+srv://db:db@cluster0.l8ypo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 //const connectdb=async ()=>{
-mongoose.connect(localdb,{
+mongoose.connect(dburl,{
   useNewUrlParser:true,
   useUnifiedTopology:true
 }).then(()=>console.log("connected to Db")).catch(console.error);
@@ -52,7 +52,7 @@ mongoose.connect(localdb,{
 const Todo = require('../models/Todo');
 
 //posting
-app.post('/api/todo/new',(req,res)=>{
+app.post('/api/todo/post',(req,res)=>{
   const todo=new Todo({
     text: req.body.text
   });

@@ -1,11 +1,11 @@
 http://localhost:8000/api/todo
 
 ###
-POST http://localhost:8000/api/todo/new
+POST http://localhost:8000/api/todo/post
 Content-Type: application/json
 
 {
-    "text":"vddfsdfdffsdf"
+    "text":"sdfsdfsdgfsgsfgdfg"
 }
 
 ###
