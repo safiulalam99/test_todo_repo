@@ -1,0 +1,15 @@
+http://localhost:8000/api/todo
+
+###
+POST http://localhost:8000/api/todo/post
+Content-Type: application/json
+
+{
+    "text":"sdfsdfsdgfsgsfgdfg"
+}
+
+###
+DELETE  http://localhost:8000/api/todo/delete/61acf0356c91f87e04c0d71f/
+
+###
+PUT  http://localhost:8000/api/todo/comp/61acf0b86c91f87e04c0d721

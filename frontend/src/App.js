@@ -46,6 +46,10 @@ const deleteTodo =async id=> {
         method:"DELETE"
     }).then(res=>res.json());
         setTodos(todos=> todos.filter(todo =>todo._id !== data._id));
+<<<<<<< HEAD
+=======
+
+>>>>>>> ab898f1b8ac3eb66118703ea6f05ddbec1b3b70b
 }
 
 const addTodo=async()=>{
