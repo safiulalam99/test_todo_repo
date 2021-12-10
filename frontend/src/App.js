@@ -14,7 +14,44 @@ function App() {
         getTodos();
     },[])
 
+const getTodos = ()=>{
+        fetch(api+"/api/v1/task/random")
+        .then(res => res.json())
+        .then(data=>setTodos(data))
+        .catch(err => console.error("Error is",err));
+        }
+    
 
+const completeTodo= async id=>{
+    const data = await fetch(api+"/api/v1/task/comp/"+id)
+    .then(res=>res.json());
+    setTodos(todos=>todos.map(todo=>{
+        if(todo._id===data._id){
+            todo.complete=data.complete;
+        }
+        return todo;
+    }));
+}
+
+const deleteTodo =async id=> {
+    const data = await fetch(api+"/api/v1/task/delete/"+id,{
+        method:"DELETE"
+    }).then(res=>res.json());
+        setTodos(todos=> todos.filter(todo =>todo._id !== data._id));
+}
+
+const addTodo=async()=>{
+    const data = await fetch (api+"/api/v1/task/post",{
+        method:"POST",
+        headers:{
+            "Content-type":"application/json"
+        },
+        body:JSON.stringify({text:newTodo})
+    }).then(res=>res.json());
+   setTodos([...todos,data]);
+   setPopupActive(false);
+   setNewTodo("");
+} 
 
 
   return (
