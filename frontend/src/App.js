@@ -12,72 +12,9 @@ function App() {
     
     useEffect (()=>{
         getTodos();
-        //getRandom();
     },[])
 
-    const getRandom = ()=>{
-        fetch(api+"/api/v1/task/random")
-        .then(res => res.json())
-        .then(data=>setTodos(data))
-        .catch(err => console.error("Error is",err));
-        }
 
-    const getTodos = ()=>{
-        fetch(api+"/api/todo")
-        .then(res => res.json())
-        .then(data=>setTodos(data))
-        .catch(err => console.error("Error is",err));
-        }
-    
-
-const completeTodo= async id=>{
-    const data = await fetch(api+"/api/todo/comp/"+id)
-    .then(res=>res.json());
-    setTodos(todos=>todos.map(todo=>{
-        if(todo._id===data._id){
-            todo.complete=data.complete;
-        }
-        return todo;
-    }));
-}
-
-const deleteTodo =async id=> {
-    const data = await fetch(api+"/api/todo/delete/"+id,{
-        method:"DELETE"
-    }).then(res=>res.json());
-        setTodos(todos=> todos.filter(todo =>todo._id !== data._id));
-<<<<<<< HEAD
-=======
-
->>>>>>> ab898f1b8ac3eb66118703ea6f05ddbec1b3b70b
-}
-
-const addTodo=async()=>{
-    const data = await fetch (api+"/api/todo/post",{
-        method:"POST",
-        headers:{
-            "Content-type":"application/json"
-        },
-        body:JSON.stringify({text:newTodo})
-    }).then(res=>res.json());
-   setTodos([...todos,data]);
-   setPopupActive(false);
-   setNewTodo("");
-}
-
-const ranAdd=async()=>{
-    const data = await fetch (api+"/api/todo/post",{
-        method:"POST",
-        headers:{
-            "Content-type":"application/json"
-        },
-        body:JSON.stringify({text:newTodo})
-       // body:JSON.stringify({"userName": userName})
-    }).then(res=>res.json());
-   setTodos([...todos,data]);
-   setPopupActive(false);
-   setNewTodo("");
-}
 
 
   return (
