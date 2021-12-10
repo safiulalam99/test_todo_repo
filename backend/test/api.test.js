@@ -23,3 +23,4 @@ describe('GET /api/v1/emojis', () => {
       .expect(200, ['😀', '😳', '🙄'], done);
   });
 });
+
