@@ -74,5 +74,31 @@ app.get('/api/v1/task/random', (req, res)=> {
       }).catch(err=>{console.log(err)});
     });
 
+    
+//delete function
+  app.delete('/api/v1/task/delete/:id', (req,res)=>{
+    Todo.findByIdAndDelete(req.params.id).then(result => {
+  res.json(result);
+}).catch(err=>{
+  res.status(406);
+  
+})
+ });
+
+//checking out tasks
+app.get('/api/v1/task/comp/:id', (req,res)=>{
+   Todo.findOne({"_id":req.params.id},(err,todo)=>{
+    if(err){throw err;}
+    if(todo){
+      todo.complete = !todo.complete;
+      todo.save();
+      res.json(todo);
+      }
+
+   }).then(todo=>{
+   
+  }).catch(err=>console.log(err));
+
+})
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
