@@ -15,7 +15,7 @@ app.use(express.json()); //allow to use contetn type application json
 
 app.get('/api/get', (req, res) => {
   res.status(200).send({
-    "message": '🦄🌈🦄'
+    "message": '👋🌎🌍🌏'
   });
 });
 
