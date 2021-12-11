@@ -23,11 +23,13 @@ body{
   padding:32px;
 }
 h1{
+  
   font-size: 40px;
   font-weight: 700px;
   margin-bottom: 32px;
 }
 h4{
+
   font-size: 18px;
   color: var(--light);
   text-transform: uppercase;

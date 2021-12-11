@@ -56,8 +56,8 @@ const addTodo=async()=>{
 
   return (
     <div className="App">
-      <h1>Welcome </h1>
-      <h4>Your tasks</h4>
+      <h1>TASKS </h1>
+      <h4></h4>
       <div className="todos">
           {todos.map(todo=>(
             <div className={"todo "+ (todo.complete ? "is-complete" : "")
