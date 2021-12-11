@@ -13,6 +13,12 @@ const app = express();
 app.use(cors()); //for stopping cors errors
 app.use(express.json()); //allow to use contetn type application json
 
+app.get('/api/get', (req, res) => {
+  res.status(200).send({
+    "message": '🦄🌈🦄'
+  });
+});
+
 //random text generator
 app.get('/api/v1/task/ran', (req, res) => {
   let randomName = faker.hacker.phrase();
@@ -40,6 +46,12 @@ mongoose.connect(dburl,{
 
 const Todo = require('../models/Todo');
 
+
+app.get('/api/v1', (req, res) => {
+  res.status(200).send({
+    "message": '👋🌎🌍🌏'
+  });
+});
 
 //posting
 app.post('/api/v1/task/post',(req,res)=>{
