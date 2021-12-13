@@ -14,7 +14,7 @@ services:
     build:
       context: ./backend
     ports:
-      - '8050:8000'
+      - '8050:5000'
     volumes:
       - ./backend:/opt/app
     restart: always
