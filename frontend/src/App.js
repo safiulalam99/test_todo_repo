@@ -2,12 +2,11 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import './App.css';
-const api= "https://21wsp5.course.tamk.cloud";
+const api= "http://localhost:8050";
 
 function App() {
     const [todos, setTodos]= useState([]);
-    const [rans, rantodo]= useState([]);
-    const [popupActive, setPopupActive]= useState(false);
+       const [popupActive, setPopupActive]= useState(false);
     const[newTodo, setNewTodo]=useState("");
     
     useEffect (()=>{
@@ -57,7 +56,7 @@ const addTodo=async()=>{
   return (
     <div className="App">
       <h1>TASKS </h1>
-      <h4></h4>
+      <h4>..</h4>
       <div className="todos">
           {todos.map(todo=>(
             <div className={"todo "+ (todo.complete ? "is-complete" : "")
