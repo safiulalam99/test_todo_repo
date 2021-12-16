@@ -18,7 +18,11 @@ app.get('/get', (req, res) => {
     "message": '👋🌎🌍🌏'
   });
 });
-
+app.get('/api/api', (req, res) => {
+  res.json({
+    message: 'Team 05'
+  });
+});
 //random text generator
 app.get('/v1/task/ran', (req, res) => {
   let randomName = faker.hacker.phrase();
