@@ -13,14 +13,14 @@ const app = express();
 app.use(cors()); //for stopping cors errors
 app.use(express.json()); //allow to use contetn type application json
 
-app.get('/api/get', (req, res) => {
+app.get('/get', (req, res) => {
   res.status(200).send({
     "message": '👋🌎🌍🌏'
   });
 });
 
 //random text generator
-app.get('/api/v1/task/ran', (req, res) => {
+app.get('/v1/task/ran', (req, res) => {
   let randomName = faker.hacker.phrase();
   res.status(200).send({
     id: Date.now(),
@@ -47,14 +47,14 @@ mongoose.connect(dburl,{
 const Todo = require('../models/Todo');
 
 
-app.get('/api/v1', (req, res) => {
+app.get('/v1', (req, res) => {
   res.status(200).send({
     "message": '👋🌎🌍🌏'
   });
 });
 
 //posting
-app.post('/api/v1/task/post',(req,res)=>{
+app.post('/v1/task/post',(req,res)=>{
   const todo=new Todo({
     text: req.body.text,
     manmade: true
@@ -64,7 +64,7 @@ app.post('/api/v1/task/post',(req,res)=>{
 })
 
 //getting
-app.get('/api/v1/task/random', (req, res)=> {
+app.get('/v1/task/random', (req, res)=> {
 
 
    Todo.find({manmade:{$ne:true}}).sort({"timestamp":-1}).limit(3).then(function(post){
@@ -88,7 +88,7 @@ app.get('/api/v1/task/random', (req, res)=> {
 
     
 //delete function
-  app.delete('/api/v1/task/delete/:id', (req,res)=>{
+  app.delete('/v1/task/delete/:id', (req,res)=>{
     Todo.findByIdAndDelete(req.params.id).then(result => {
   res.json(result);
 }).catch(err=>{
@@ -98,7 +98,7 @@ app.get('/api/v1/task/random', (req, res)=> {
  });
 
 //checking out tasks
-app.get('/api/v1/task/comp/:id', (req,res)=>{
+app.get('/v1/task/comp/:id', (req,res)=>{
    Todo.findOne({"_id":req.params.id},(err,todo)=>{
     if(err){throw err;}
     if(todo){

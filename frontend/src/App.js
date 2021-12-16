@@ -2,7 +2,7 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import './App.css';
-const api= "http://localhost:8050";
+const api= "https://21wsp5.course.tamk.cloud/api";
 
 function App() {
     const [todos, setTodos]= useState([]);
@@ -14,7 +14,7 @@ function App() {
     },[])
 
 const getTodos = ()=>{
-        fetch(api+"/api/v1/task/random")
+        fetch(api+"/v1/task/random")
         .then(res => res.json())
         .then(data=>setTodos(data))
         .catch(err => console.error("Error is",err));
@@ -22,7 +22,7 @@ const getTodos = ()=>{
     
 
 const completeTodo= async id=>{
-    const data = await fetch(api+"/api/v1/task/comp/"+id)
+    const data = await fetch(api+"/v1/task/comp/"+id)
     .then(res=>res.json());
     setTodos(todos=>todos.map(todo=>{
         if(todo._id===data._id){
@@ -33,14 +33,14 @@ const completeTodo= async id=>{
 }
 
 const deleteTodo =async id=> {
-    const data = await fetch(api+"/api/v1/task/delete/"+id,{
+    const data = await fetch(api+"/v1/task/delete/"+id,{
         method:"DELETE"
     }).then(res=>res.json());
         setTodos(todos=> todos.filter(todo =>todo._id !== data._id));
 }
 
 const addTodo=async()=>{
-    const data = await fetch (api+"/api/v1/task/post",{
+    const data = await fetch (api+"/v1/task/post",{
         method:"POST",
         headers:{
             "Content-type":"application/json"
