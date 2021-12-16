@@ -11,7 +11,7 @@ services:
   backend:
     image: ${BACKEND_IMAGE}
     ports:
-      - "4040:8050"
+      - "4040:5000"
     env_file:
       - .env
     restart: always
