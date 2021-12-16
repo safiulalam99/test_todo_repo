@@ -4,7 +4,7 @@
   "description": " A basic starter for an express.js API",
   "main": "app.js",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "node src/app.js node --trace-warnings",
     "dev": "nodemon src/app.js",
     "lint": "eslint --fix src",
     "test": "mocha --exit"
@@ -22,7 +22,7 @@
     "express": "^4.17.1",
     "faker": "^5.5.3",
     "helmet": "^4.6.0",
-    "mongoose": "^6.0.14",
+    "mongoose": "^6.1.0",
     "morgan": "^1.10.0"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 const request = require('supertest');
 
 const app = require('../src/app');
-
+/*
 describe('GET /api/v1', () => {
   it('responds with a json message', (done) => {
     request(app)
@@ -23,3 +23,5 @@ describe('GET /api/v1/emojis', () => {
       .expect(200, ['😀', '😳', '🙄'], done);
   });
 });
+
+*/

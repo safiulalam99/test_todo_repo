@@ -12,7 +12,11 @@ const TodoSchema = new Schema({
     },
     timestamp:{
         type:String,
-        defauly: Date.now()
+        default: Date.now()
+    },
+    manmade:{
+    type:Boolean,
+        default: false
     }
 })
 const Todo = mongoose.model("Todo", TodoSchema);
